@@ -17,10 +17,11 @@ public class Reader {
 
             assert files != null;
             for (File file : files) {
-                BufferedReader bufferd = new BufferedReader(new FileReader(file));
+                BufferedReader buffered = new BufferedReader(new FileReader(file));
                 String line;
 
-                while ((line = bufferd.readLine()) != null) {
+                while ((line = buffered.readLine()) != null) {
+                    wordsList.clear();
                     wordsList.addAll(Arrays.asList(line.split("[\\s.,;]+")));
                     for (String word : wordsList) {
                         if (duplicateWords.containsKey(word)) {
@@ -31,6 +32,7 @@ public class Reader {
                         }
                     }
                 }
+                buffered.close();
             }
 
         } catch (Exception e) {
